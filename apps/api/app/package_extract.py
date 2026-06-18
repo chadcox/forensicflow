@@ -55,6 +55,11 @@ def _validate_zip(
     total_size = 0
     for info in zf.infolist():
         _validate_member_name(info.filename)
+        if info.flag_bits & 0x1:
+            raise PackageExtractError(
+                "ZIP is password-protected/encrypted. "
+                "Decrypt it and re-upload as a standard (unencrypted) ZIP."
+            )
         if _member_is_symlink(info):
             raise PackageExtractError(f"Archive contains a symlink entry: {info.filename}")
         if info.is_dir():

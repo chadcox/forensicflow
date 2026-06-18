@@ -73,6 +73,26 @@ def test_extract_zip_rejects_path_traversal(tmp_path: Path):
     assert not (tmp_path / "escape.txt").exists()
 
 
+def test_extract_zip_rejects_encrypted(tmp_path: Path):
+    import shutil
+    import subprocess
+
+    zip_cli = shutil.which("zip")
+    if not zip_cli:
+        pytest.skip("zip CLI not available to build an encrypted archive")
+
+    (tmp_path / "data.csv").write_text("a,b\n1,2\n", encoding="utf-8")
+    archive = tmp_path / "enc.zip"
+    subprocess.run(
+        [zip_cli, "-q", "-P", "secret123", str(archive), "data.csv"],
+        cwd=tmp_path,
+        check=True,
+    )
+
+    with pytest.raises(PackageExtractError, match="password-protected"):
+        extract_zip(archive, tmp_path / "out")
+
+
 def test_extract_zip_rejects_too_many_files(tmp_path: Path):
     archive = tmp_path / "too-many.zip"
     dest = tmp_path / "out"
