@@ -6,7 +6,6 @@ Create Date: 2026-06-01
 """
 
 from alembic import op
-import sqlalchemy as sa
 
 
 revision = "20260601_0006"
@@ -16,10 +15,12 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.add_column("ingest_jobs", sa.Column("error_code", sa.String(length=64), nullable=True))
-    op.add_column("ingest_jobs", sa.Column("error_stage", sa.String(length=64), nullable=True))
+    # Idempotent: the baseline migration's create_all already builds the current
+    # ingest_jobs model (which includes these columns) on fresh databases.
+    op.execute("ALTER TABLE ingest_jobs ADD COLUMN IF NOT EXISTS error_code VARCHAR(64)")
+    op.execute("ALTER TABLE ingest_jobs ADD COLUMN IF NOT EXISTS error_stage VARCHAR(64)")
 
 
 def downgrade() -> None:
-    op.drop_column("ingest_jobs", "error_stage")
-    op.drop_column("ingest_jobs", "error_code")
+    op.execute("ALTER TABLE ingest_jobs DROP COLUMN IF EXISTS error_stage")
+    op.execute("ALTER TABLE ingest_jobs DROP COLUMN IF EXISTS error_code")
