@@ -1,5 +1,11 @@
 # Corvus
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CodeQL](https://github.com/chadcox/corvus/actions/workflows/codeql.yml/badge.svg)](https://github.com/chadcox/corvus/actions/workflows/codeql.yml)
+[![API migrations](https://github.com/chadcox/corvus/actions/workflows/api-migrations.yml/badge.svg)](https://github.com/chadcox/corvus/actions/workflows/api-migrations.yml)
+![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
+![React](https://img.shields.io/badge/React-19-61dafb.svg)
+
 Offline forensic triage review platform for endpoint investigations. Ingest Windows, macOS, and Linux evidence packages, normalize parsed and raw artifacts through source adapters and forensic parsers, hunt threats with detection engines, and investigate through linked **Timeline**, **Object**, **Disk**, and **Browser** views.
 
 ![Corvus cases dashboard](docs/screenshots/02-cases.png)
