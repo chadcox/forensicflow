@@ -2,6 +2,8 @@
 
 Offline forensic triage review platform for endpoint investigations. Ingest Windows, macOS, and Linux evidence packages, normalize parsed and raw artifacts through source adapters and forensic parsers, hunt threats with detection engines, and investigate through linked **Timeline**, **Object**, **Disk**, and **Browser** views.
 
+![Corvus cases dashboard](docs/screenshots/02-cases.png)
+
 > **Intended use.** Corvus is a defensive DFIR triage tool for authorized
 > forensic and incident-response work on evidence you are permitted to process.
 > The default Docker stack ships development defaults and is meant for a trusted,
@@ -106,6 +108,17 @@ See [docs/EVIDENCE-PACKAGE.md](docs/EVIDENCE-PACKAGE.md) for the full format ref
 | **Object** | Extracted entities — users, processes, files, hosts, IP addresses — with cross-view links |
 | **Disk** | Logical filesystem tree from collected paths and file metadata |
 | **Browser** | Chromium history, downloads, and cookies via [Hindsight](https://github.com/obsidianforensics/hindsight) |
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/03-timeline.png" alt="Timeline view"><br><sub><b>Timeline</b></sub></td>
+    <td><img src="docs/screenshots/04-entities.png" alt="Object view"><br><sub><b>Object</b></sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/04-disk.png" alt="Disk view"><br><sub><b>Disk</b></sub></td>
+    <td><img src="docs/screenshots/04-browser.png" alt="Browser view"><br><sub><b>Browser</b></sub></td>
+  </tr>
+</table>
 
 ## Detections (Chainsaw + Sigma)
 
