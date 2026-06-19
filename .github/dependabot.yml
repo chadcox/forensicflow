@@ -12,6 +12,13 @@ updates:
     directory: /apps/web
     schedule:
       interval: weekly
+    groups:
+      # vite and its plugins share peer deps (plugin-react N requires vite N),
+      # so bump them together in one PR instead of separate, un-mergeable ones.
+      vite:
+        patterns:
+          - vite
+          - "@vitejs/*"
   - package-ecosystem: docker
     directories:
       - /apps/api
