@@ -13,7 +13,7 @@
     "test:e2e:backend": "PLAYWRIGHT_USE_WEBSERVER=0 PLAYWRIGHT_BASE_URL=http://web:5173 PLAYWRIGHT_BACKEND_E2E=1 playwright test e2e/backend-analyst-flow.spec.ts --reporter=line"
   },
   "dependencies": {
-    "@tanstack/react-virtual": "^3.11.0",
+    "@tanstack/react-virtual": "^3.14.3",
     "react": "^19.0.0",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.1.0"
